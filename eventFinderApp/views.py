@@ -1,5 +1,5 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views import generic
 from django.shortcuts import render
 from .models import Event
@@ -76,5 +76,42 @@ class AddEventView(generic.View):
         # build the response with our template
         template = 'eventFinderApp/addevent.html'
         return render(request, template, context)
+
+
+# there's a lot of duplicated lines in our AddEventView so lets try and fix that
+# this class is exactly the same as the one above!
+# it just is arranged a little differently
+class AddEventView2(generic.View):
+
+    template = 'eventFinderApp/addevent.html'
+    form_class = EventForm
+    success_url = reverse_lazy('eventFinderApp:index')
+    # we have to use reverse_lazy so that urls.py can load our class
+    # and not get stuck in a recursive loop 
+
+    def form_context(self, eventform):
+        # assign the form to the context
+        return {'eventform': eventform}
+
+    # in the class basded view we handle the GET request with a get() function
+    def get(self, request):
+        # create our form instance
+        eventform = self.form_class()
+        # return our template with our contex
+        return render(request, self.template, self.form_context(eventform))
+
+    # in the class based view we handle the POST request with a post() function
+    def post(self, request):
+        # we create our form instance with the data from the request
+        eventform = self.form_class(request.POST)
+        # check if the form is valid
+        if eventform.is_valid():
+            # save the data of the form
+            eventform.save()
+            # redirect to the list of events 
+            return HttpResponseRedirect(self.success_url)
+        # if the form isn't valid return the form (with automatic errors)
+        # build the response with our template
+        return render(request, self.template, self.form_context(eventform))
 
 
