@@ -115,3 +115,14 @@ class AddEventView2(generic.View):
         return render(request, self.template, self.form_context(eventform))
 
 
+
+# since we are doing something very common django has a built in tool to do this for us
+class AddEventCreateView(generic.CreateView):
+    # using the create view we can just give it the variables 
+    # as the functionaity is already built in!
+    form_class = EventForm
+    context_object_name = 'eventform'
+    template_name = 'eventFinderApp/addevent.html'
+    success_url = reverse_lazy('eventFinderApp:index')
+    # we have to use reverse_lazy so that urls.py can load our class
+    # and not get stuck in a recursive loop 
