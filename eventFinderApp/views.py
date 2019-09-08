@@ -41,7 +41,7 @@ def addevent(request):
     else:
         eventform = EventForm()
     # create the context for our template
-    context = {'eventform': eventform}
+    context = {'form': eventform}
     # build the response with our template
     template = 'eventFinderApp/addevent.html'
     return render(request, template, context)
@@ -55,7 +55,7 @@ class AddEventView(generic.View):
         # create our form instance
         eventform = EventForm()
         # assign it to the context
-        context = {'eventform': eventform}
+        context = {'form': eventform}
         # return our template with our context
         template = 'eventFinderApp/addevent.html'
         return render(request, template, context)
@@ -72,7 +72,7 @@ class AddEventView(generic.View):
             return HttpResponseRedirect(reverse('eventFinderApp:index'))
         # if the form isn't valid return the form (with automatic errors)
             # create the context for our template
-        context = {'eventform': eventform}
+        context = {'form': eventform}
         # build the response with our template
         template = 'eventFinderApp/addevent.html'
         return render(request, template, context)
@@ -91,7 +91,7 @@ class AddEventView2(generic.View):
 
     def form_context(self, eventform):
         # assign the form to the context
-        return {'eventform': eventform}
+        return {'form': eventform}
 
     # in the class basded view we handle the GET request with a get() function
     def get(self, request):
@@ -121,7 +121,6 @@ class AddEventCreateView(generic.CreateView):
     # using the create view we can just give it the variables 
     # as the functionaity is already built in!
     form_class = EventForm
-    context_object_name = 'eventform'
     template_name = 'eventFinderApp/addevent.html'
     success_url = reverse_lazy('eventFinderApp:index')
     # we have to use reverse_lazy so that urls.py can load our class

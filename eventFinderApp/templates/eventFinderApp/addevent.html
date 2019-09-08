@@ -4,15 +4,10 @@
 
 <h2>Add Your Event</h2>
 
-
-<form action="{% url 'eventFinderApp:addevent' %}" method="post">
+<form action="" method="post">
   {% csrf_token %}
-  {{ eventform.as_p }}
+  {{ form.as_p }}
   <input type="submit" value="Submit">
 </form>
-
-
-
-
 
 {% endblock %}
