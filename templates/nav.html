@@ -1,0 +1,14 @@
+<nav class = "navbar">
+    <p><a href="{% url 'eventFinderApp:index' %}">Home</a></p>
+    
+    
+
+{% if user.is_authenticated %}
+    <p><a href="{% url 'eventFinderApp:account' %}">{{ user.username }}</a></p>
+    <p><a href="{% url 'logout' %}">Logout</a></p>
+
+{% else %}
+    <p><a href="{% url 'login' %}">Login / Register</a></p>
+    
+{% endif %}
+</nav>

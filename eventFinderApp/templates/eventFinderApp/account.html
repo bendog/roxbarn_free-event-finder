@@ -1,7 +1,32 @@
-{% extends "./base.html" %}
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
 
 {% block content %}
 
-You should put the user's account information and upcoming events here.
+<h3>Profile</h3>
+
+
+
+<form action="{% url 'eventFinderApp:account' %}" method="post">
+  {% csrf_token %}
+  {{ form|crispy }}
+  <input type="submit" value="Save Changes">
+</form>
+
+
+
+<br>
+<h3>Your Upcoming Events</h3>
+{% if events_list %}
+    {% for event in events_list %}
+        {% include "./detailsBox.html" with event=event %}
+    {% endfor %}
+{% else %}
+    <p>You haven't created any events.</p>
+{% endif %}
+<br>
+<h3>Your Past Events</h3>
 
 {% endblock %}
+

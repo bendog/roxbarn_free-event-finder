@@ -10,11 +10,13 @@ urlpatterns = [
     # event-finder/1
     path('<int:pk>/', views.EventView.as_view(), name='event'),
     # event-finder/my-account
-    path('my-account/', views.account, name='account'),
+    # path('account/', views.AccountView.as_view(), name='account'),
+    path('account/', views.account, name='account'),
     # event-finder/addevent
-    path('addevent/', views.addevent, name='addevent'),
-    path('addeventview/', views.AddEventView.as_view(), name='addeventview'),
-    path('addeventview2/', views.AddEventView2.as_view(), name='addeventview'),
-    path('addeventcreateview/', views.AddEventCreateView.as_view(), name='addeventcreateview'),
-
+    # path('addevent/', views.addevent, name='addevent'),
+    # path('addeventview/', views.AddEventView.as_view(), name='addeventview'),
+    # path('addeventview2/', views.AddEventView2.as_view(), name='addeventview'),
+    path('addeventcreateview/', views.AddEventCreateView.as_view(), name='addevent'),
 ]
+
+

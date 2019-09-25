@@ -1,4 +1,6 @@
-{% extends "./base.html" %}
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
 
 {% block content %}
 
@@ -9,5 +11,9 @@
   {{ form.as_p }}
   <input type="submit" value="Submit">
 </form>
+
+
+
+
 
 {% endblock %}

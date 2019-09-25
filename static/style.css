@@ -8,7 +8,7 @@ body {
 
 h1 {
     font-size: 3rem;
-    color: #ff006f;
+    color: #058ED9;
     margin: 0;
 }
 
@@ -29,14 +29,14 @@ nav a {
 }
 
 a {
-    color: #ff006f;
+    color: #058ED9;
 }
 
 #new-event {
     width: 100%;
-    background-color: #ff006f;
+    background-color: #058ED9;
     color: #fff;
-    border: 1px solid #ff006f;
+    border: 1px solid #058ED9;
     border-radius: 5px;
     font-size: 1.5rem;
     height: 50px;
@@ -48,7 +48,7 @@ a {
 }
 
 .details-box {
-    border: 1px solid #ff006f;
+    border: 1px solid #058ED9;
     border-radius: 5px;
     margin: 10px 0;
     padding: 10px;
@@ -63,4 +63,28 @@ a {
 
 .details-box a:hover {
     text-decoration: underline;
+}
+
+.titles {
+    width: 100%;
+    background-color: #483D3F;
+    overflow: auto;
+}
+
+.titles a {
+    float: left;
+    padding: 12px 0;
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+    width: 20%;
+    text-align: center;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 95%;
+    height: 2.5rem;
+    border-top: 1px solid black;
 }

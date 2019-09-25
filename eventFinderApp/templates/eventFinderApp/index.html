@@ -1,9 +1,23 @@
-{% extends "./base.html" %}
+{% extends "base.html" %}
 
 {% block content %}
 
+{% if user.is_authenticated %}
     <a href="{% url 'eventFinderApp:addevent' %}"> <button id="new-event">+ Create new event</button></a>
+{% else %}
+    <a href="{% url 'users:login' %}"> <button id="new-event">+ Create new event</button></a>
+{% endif %}
+
     <h3>See what's on!</h3>
+
+    <div class="titles">
+        <a href="#">Event</a>
+        <a href="#">Category</a>
+        <a href="#">Start Date and Time</a>
+        <a href="#">End Date and Time</a>
+        <a href="#">Location</a>
+    </div>
+
     {% if events_list %}
         {% for event in events_list %}
             {% include "./detailsBox.html" with event=event %}

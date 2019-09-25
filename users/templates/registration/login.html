@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<form method="post" novalidate>
+  {% csrf_token %}
+  {{ form | crispy }}
+  <button type="submit" value="Update" class="btn btn-primary">Login</button>
+</form>
+<br>
+<a href="{% url 'users:register' %}">Click here to register!</a>
+
+{% endblock %}

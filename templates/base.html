@@ -1,5 +1,7 @@
 {% load static %}
 
+
+
 <!doctype html>
 
 <html lang="en">
@@ -9,7 +11,8 @@
         <meta name="description" content="">
         <meta name="author" content="Hayley van Waas">
         <link href="https://fonts.googleapis.com/css?family=Manjari&display=swap" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="{% static 'eventFinderApp/style.css' %}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     </head>
 
     <body>
@@ -22,9 +25,9 @@
         </header>
 
         {% block content %}{% endblock %}
-        <!-- <footer>
+        {% comment %} <footer>
             <p>Copyright</p>
-        </footer> -->
+        </footer>  {% endcomment %}
     </body>
 
 </html>

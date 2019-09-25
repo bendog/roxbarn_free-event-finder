@@ -1,2 +1,6 @@
-django==2.2
+Django==2.2
+django-crispy-forms==1.7.2
 psycopg2==2.8.3
+pytz==2019.2
+sqlparse==0.3.0
+djangorestframework==3.10.3
