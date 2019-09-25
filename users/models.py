@@ -8,12 +8,9 @@ class CustomUser(AbstractUser):
     last_name = models.CharField(max_length=50)
     email = models.EmailField()
 
-
     def __str__(self):
-      return self.username
+        return self.username
 
     @property
     def is_awesome(self):
-      return self.username == 'roxbarn'
-      
-
+        return self.username == "roxbarn"

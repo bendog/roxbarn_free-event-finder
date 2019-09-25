@@ -9,19 +9,19 @@ from users.models import CustomUser
 from users.forms import CustomUserChangeForm
 
 
-
 class IndexView(generic.ListView):
-    template_name = 'eventFinderApp/index.html'
-    context_object_name = 'events_list'
+    template_name = "eventFinderApp/index.html"
+    context_object_name = "events_list"
 
     def get_queryset(self):
-        '''Return the events.'''
+        """Return the events."""
         return Event.objects.all()
 
 
 class EventView(generic.DetailView):
     model = Event
-    template_name = 'eventFinderApp/event.html'
+    template_name = "eventFinderApp/event.html"
+
 
 # class AccountView(generic.ListView):
 #     template_name = 'eventFinderApp/account.html'
@@ -30,28 +30,28 @@ class EventView(generic.DetailView):
 #     def get_queryset(self):
 #         return Event.objects.filter(host=self.request.user)
 
+
 def account(request):
     events_list = Event.objects.filter(host=request.user)
-    if request.method == 'POST':
+    if request.method == "POST":
         print(request.POST)
         user_form = CustomUserChangeForm(request.POST, instance=request.user)
         if user_form.is_valid():
             user_form.save()
     else:
         user_form = CustomUserChangeForm(instance=request.user)
-    context = {'events_list': events_list, 'form': user_form}
-    template_name = 'eventFinderApp/account.html'
+    context = {"events_list": events_list, "form": user_form}
+    template_name = "eventFinderApp/account.html"
     return render(request, template_name, context)
 
 
 class AddEventCreateView(generic.CreateView):
-    # using the create view we can just give it the variables 
+    # using the create view we can just give it the variables
     # as the functionaity is already built in!
     form_class = EventForm
-    template_name = 'eventFinderApp/addevent.html'
-    success_url = reverse_lazy('eventFinderApp:index')
-    context_object_name = 'name'
-
+    template_name = "eventFinderApp/addevent.html"
+    success_url = reverse_lazy("eventFinderApp:index")
+    context_object_name = "name"
 
     def form_valid(self, form):
         form.instance.host = self.request.user
@@ -63,8 +63,9 @@ class AddEventCreateView(generic.CreateView):
         initial = super(AddEventCreateView, self).get_initial()
         # Copy the dictionary so we don't accidentally change a mutable dict
         initial = initial.copy()
-        initial['host'] = self.request.user.pk
+        initial["host"] = self.request.user.pk
         return initial
+
 
 # def addevent(request):
 
@@ -85,4 +86,3 @@ class AddEventCreateView(generic.CreateView):
 #     else:
 #         form = EventForm()
 #         return render(request, 'eventFinderApp/addevent.html', {'eventform': form})
-
